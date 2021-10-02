@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{publication.title}}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="title is-2 has-text-centered">{{publication.title}}</h1>
+        <div class="columns mt-5">
+            <div class="column is-two-third">
+                <h2 class="title is-3 has-text-centered">Details de l'annonce </h2>
+                <img src="/images/1.jpg" width="100%">
+                <div class="is-flex is-justify-content-flex-end mt-4">
+                    <p class="title is-3">Prix : {{publication.price|number_format(0,'.',' ')}}€</p>
+                </div>
+                <h4 class="title is-4">Description de l'annonce</h4>
+                <p>{{publication.description}}</p>
+            </div>
+            <div class="column is-one-third is-flex is-flex-direction-column is-align-items-center">
+                <h2 class="title is-3 has-text-centered">Informations sur l'annonceur</h2>
+                <img src="/images/profile/image.jpeg" width="50%">
+                <p class="mt-4">Email : {{publication.user.email}}</p>
+                <button class="mt-5 button is-info">Contacter l'annonceur</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
