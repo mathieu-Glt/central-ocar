@@ -7,6 +7,7 @@ use App\Entity\Car;
 use App\Entity\Category;
 use App\Entity\Publication;
 use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -92,8 +93,9 @@ class AppFixtures extends Fixture
                     ->setTitle($faker->words(5,true))
                     ->setUser($faker->randomElement($users))
                     ->setCar($faker->randomElement($cars))
-                    ->setPrice(mt_rand(4000, 1000000))
                     ->setDescription($faker->paragraphs(2,true))
+                    ->setPrice(mt_rand(4000, 1000000))
+                    ->setPublishedAt(DateTimeImmutable::createFromMutable($faker->dateTime()))
                     ->setIsSold($faker->randomElement([true,false]));
 
             $manager->persist($publication);

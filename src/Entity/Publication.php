@@ -49,6 +49,11 @@ class Publication
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $publishedAt;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +127,18 @@ class Publication
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getPublishedAt(): ?\DateTimeImmutable
+    {
+        return $this->publishedAt;
+    }
+
+    public function setPublishedAt(\DateTimeImmutable $publishedAt): self
+    {
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }
