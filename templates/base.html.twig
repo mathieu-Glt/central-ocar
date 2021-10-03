@@ -29,39 +29,42 @@
 
 				<div id="navbarBasicExample" class="navbar-menu">
 					<div class="navbar-start">
-          
+
 						<a class="navbar-item has-text-black is-capitalized">
 							Les annonces
 						</a>
-          
-						
 
-							<a class="navbar-item has-text-white">
-								Déposer mon annonce
-							</a>
-						</div>
-					</div>
 
-					<div class="navbar-end">
-						<div class="navbar-item">
-							{% if app.user %}
-								<p class="has-text-white mr-3">Bonjour
-									{{app.user.email}}</p>
-								<a href="{{path('app_logout')}}" class="button has-background-link-dark has-text-light has-background-success">
-									<strong>Deconnexion</strong>
-								</a>
-							{% else %}
-								<div class="buttons ">
-									<a href="{{path('app_login')}}" class="button has-background-link-dark has-text-light">
-										<strong>Connexion</strong>
-									</a>
-								</div>
-							{% endif %}
-						</div>
+						<a class="navbar-item has-text-white">
+							Déposer mon annonce
+						</a>
 					</div>
 				</div>
-			</nav>
-		</header>
-		{% block body %}{% endblock %}
+
+				<div class="navbar-end">
+					<div class="navbar-item">
+						{% if app.user %}
+							<p class="has-text-white mr-3">Bonjour
+								{{app.user.email}}</p>
+							<a href="{{path('app_logout')}}" class="button has-background-link-dark has-text-light has-background-success">
+								<strong>Deconnexion</strong>
+							</a>
+						{% else %}
+							<div class="buttons ">
+								<a href="{{path('app_login')}}" class="button has-background-link-dark has-text-light">
+									<strong>Connexion</strong>
+								</a>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</nav>
 	</body>
-</html>
+</html></header>
+{% for label, messages in app.flashes %}
+{% for message in messages %}
+	<div class="h5 p-4 text-center text-white bg-{{ label }}">
+		{{ message }}
+	</div>
+{% endfor %}{% endfor %}{% block body %}{% endblock %}</body></html>

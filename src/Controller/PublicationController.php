@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Publication;
 use App\Form\PublicationType;
+use App\Repository\PublicationRepository;
 use DateTime;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,7 +13,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class PublicationController extends AbstractController
-{
+{   
+    /**
+     * @Route("/annonces", name="publication_list")
+     */
+    public function list(PublicationRepository $publicationRepository): Response
+    {   
+
+        $publications = $publicationRepository->findAll();
+        //dd($publication);
+        return $this->render('list.html.twig', [
+            'publications' => $publications,
+        ]);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @Route("/annonces/{id}", name="publication_show", requirements={"id"="\d+"})
      */
@@ -48,7 +71,7 @@ class PublicationController extends AbstractController
             $publication->setUser($user);
             $em->persist($publication);
             $em->flush();
-
+            $this->addFlash('success', 'Annonce publié');
             return $this->redirectToRoute('home_index');
 
         }
@@ -75,7 +98,7 @@ class PublicationController extends AbstractController
             //isSold
             $publication->setIsSold(false);
             $em->flush();
-
+            $this->addFlash('success', 'Annonce modifiée');
             return $this->redirectToRoute('home_index');
 
         }

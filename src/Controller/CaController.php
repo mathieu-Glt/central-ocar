@@ -37,8 +37,8 @@ class CaController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($car);
             $em->flush($car);
-
-            return $this->render('home_index');
+            $this->addFlash('success', 'Voiture ajoutée');
+            return $this->redirectToRoute('home_index');
         }
         return $this->render('car/add.html.twig', [
             'form'=>$form->createView()
@@ -59,8 +59,8 @@ class CaController extends AbstractController
         {
             $em = $this->getDoctrine()->getManager();
             $em->flush($car);
-
-            return $this->render('home_index');
+            $this->addFlash('success', 'Voiture modifiée');
+            return $this->redirectToRoute('home_index');
         }
         return $this->render('car/edit.html.twig', [
             'form'=>$form->createView()
